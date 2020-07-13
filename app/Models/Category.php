@@ -4,17 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Ramsey\Uuid\Uuid;
+
 
 class Category extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Traits\Uuid;
     protected $fillable = ['name', 'description','is_active'];
     protected $date = ['deleted_at'];
     protected $casts = [
         'id' => 'string'
     ];
-
+    public $incrementing = false;
+/*
     public static function boot()
     {
         parent::boot();
@@ -22,5 +23,5 @@ class Category extends Model
             $obj->id = Uuid::uuid4();
         });
     }
-
+*/
 }

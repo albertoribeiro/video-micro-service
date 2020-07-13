@@ -14,7 +14,7 @@ class Genre extends Model
     protected $casts = [
         'id' => 'string'
     ];
-
+    public $incrementing = false;
     public static function boot()
     {
         parent::boot();
