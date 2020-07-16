@@ -18,7 +18,7 @@ class CategoryController extends Controller
 
         $request->validate([
             'name'=> 'required|max:255',
-            'description' => 'required'
+            'is_active' => 'boolean'
         ]);
 
 
