@@ -38,7 +38,6 @@ class GenreControllerTest extends TestCase
     public function testInvalidationData()
     {
         $response = $this->json('POST', route('genres.store'), []);
-
         $this->assertInvalidationRequired($response);
 
         $response = $this->json('POST', route('genres.store'), [

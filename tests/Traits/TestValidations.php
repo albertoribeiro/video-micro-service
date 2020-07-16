@@ -12,9 +12,9 @@ trait TestValidations
         string $rule,
         array $ruleParams = []
     ) {
-        $response
-            ->assertStatus(422)
-            ->assertJsonValidationErrors($fields);
+        $response->assertJsonValidationErrors($fields);
+            //->assertStatus(422)
+            //->assertJsonValidationErrors($fields);
 
         foreach ($fields as $field) {
             $fieldName = str_replace('_', ' ', $field);
