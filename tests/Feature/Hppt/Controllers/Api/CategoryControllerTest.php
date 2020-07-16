@@ -15,36 +15,45 @@ class CategoryControllerTest extends TestCase
 {
     use DatabaseMigrations, TestValidations;
 
-    public function testIndex()
-    {
-        $category = factory(Category::class)->create();
-        $response = $this->get(route('categories.index'));
+    // public function testIndex()
+    // {
+    //     $category = factory(Category::class)->create();
+    //     $response = $this->get(route('categories.index'));
 
-        $response
-            ->assertStatus(200)
-            ->assertJson([$category->toArray()]);
-    }
+    //     $response
+    //         ->assertStatus(200)
+    //         ->assertJson([$category->toArray()]);
+    // }
 
-    public function testShow()
-    {
-        $category = factory(Category::class)->create();
-        $response = $this->get(route('categories.show', ['category' => $category->id]));
+    // public function testShow()
+    // {
+    //     $category = factory(Category::class)->create();
+    //     $response = $this->get(route('categories.show', ['category' => $category->id]));
 
-        $response
-            ->assertStatus(200)
-            ->assertJson($category->toArray());
-    }
+    //     $response
+    //         ->assertStatus(200)
+    //         ->assertJson($category->toArray());
+    // }
 
     public function testInvalidationData()
     {
-        $response = $this->json('POST', route('categories.store'), []);
+        // $response = $this->json('POST',
+        //                         route('categories.store'),
+        //                         [],
+        //                         [
+        //                             'Content-Type' => 'application/json',
+        //                             'Accept' => 'application/json'
+        //                         ]);
+
+        $response = $this->withHeaders(['Content-Type' => 'application/json','Accept' => 'application/json'])
+                         ->json('POST', route('categories.store'),  [],);
 
         $this->assertInvalidationRequired($response);
 
-        $response = $this->json('POST', route('categories.store'), [
+        $response = $this->json('POST', route('categories.store') , [
             'name' => str_repeat('a', 256),
             'is_active' => 'a'
-        ]);
+        ],);
 
         $this->assertInvalidationMax($response);
         $this->assertInvalidationBoolean($response);
