@@ -8,15 +8,24 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    private $rules = [
+        'name' => 'required|max:255',
+        'description' => 'nullable',
+        'is_active' => 'boolean'
+    ];
+
     public function index()
     {
         return Category::all();
     }
 
+
     public function store(Request $request)
     {
-        $request->validate(['name'=> 'required|max:255', 'is_active' => 'boolean']);
-        return Category::create($request->all());
+        $this->validate($request, $this->rules );
+        $category =  Category::create($request->all());
+        $category->refresh();
+        return $category;
     }
 
     public function show(Category $category)
@@ -24,10 +33,11 @@ class CategoryController extends Controller
         return $category;
     }
 
-    public function update(Request $request,Category $category)
+    public function update(Request $request, Category $category)
     {
-         $category->update($request->all());
-         return $category;
+        $this->validate($request, $this->rules );
+        $category->update($request->all());
+        return $category;
     }
 
     public function destroy(Category $category)

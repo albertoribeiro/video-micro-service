@@ -4,6 +4,7 @@ namespace Tests\Feature\Http\Controllers\Api;
 
 use App\Models\Category;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use phpDocumentor\Reflection\Types\Boolean;
 use Tests\TestCase;
 use Tests\Traits\TestSaves;
 use Tests\Traits\TestValidations;
@@ -64,7 +65,7 @@ class CategoryControllerTest extends TestCase
         $data = [
             'name' => 'test'
         ];
-        //$response = $this->assertStore($data, $data + ['description' => null, 'is_active' => true, 'deleted_at' => null]);
+        $response = $this->assertStore($data, $data + ['description' => null, 'is_active' => true, 'deleted_at' => null]);
         $response = $this->assertStore($data,$data);
         $response->assertJsonStructure([
             'created_at', 'updated_at'

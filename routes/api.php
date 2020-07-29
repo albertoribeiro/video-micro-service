@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //Route::resource(name:'Categories', controller:'Api\CategoryController');
 Route::resource('categories', 'Api\CategoryController',['except'=> ['create','edit']]);
 Route::resource('genres', 'Api\GenreController',['except'=> ['create','edit']]);
+Route::resource('cast_members', 'Api\CastMemberController',['except'=> ['create','edit']]);

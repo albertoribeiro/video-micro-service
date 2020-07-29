@@ -64,7 +64,7 @@ class GenreControllerTest extends TestCase
         $data = [
             'name' => 'test'
         ];
-        //$response = $this->assertStore($data, $data + ['is_active' => true, 'deleted_at' => null]);
+        //$response = $this->assertStore($data, $data + ['is_active' => true]);
         $response = $this->assertStore($data, $data );
         $response->assertJsonStructure(['created_at', 'updated_at']);
 

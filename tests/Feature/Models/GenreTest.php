@@ -15,9 +15,7 @@ class GenreTest extends TestCase
     use DatabaseMigrations;
     public function testList()
     {
-        // $category = Category::create([
-        //                 'name' => 'test1'
-        //             ]);
+
         factory(Genre::class,1)->create();
         $genres = Genre::all();
         $this->assertCount(1,$genres);

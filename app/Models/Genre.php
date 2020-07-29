@@ -10,9 +10,10 @@ class Genre extends Model
 {
     use SoftDeletes;
     protected $fillable = ['name', 'is_active'];
-    protected $date = ['deleted_at'];
+    protected $dates = ['deleted_at','field'];
     protected $casts = [
-        'id' => 'string'
+        'id' => 'string',
+        'is_active' => 'boolean'
     ];
     public $incrementing = false;
     public static function boot()
